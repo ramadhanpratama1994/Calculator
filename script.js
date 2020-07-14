@@ -1,20 +1,20 @@
 let prevNumber = ' '
 let calculationOperator = ' '
 let currentNumber = '0'
-let finalNumber = ' '
-
-const inputNumber = (number) => {
-	if (currentNumber === '0' || finalNumber === currentNumber) {
-		currentNumber = number
-	} else {
-		currentNumber += number
-	}
-}
+let resultNumber = ' '
 
 const calculatorScreen = document.querySelector('.calculator-screen')
 
 const updateScreen = (number) => {
 	calculatorScreen.value = number
+}
+
+const inputNumber = (number) => {
+	if (currentNumber === '0' || resultNumber === currentNumber) {
+		currentNumber = number
+	} else {
+		currentNumber += number
+	}
 }
 
 const numbers = document.querySelectorAll('.number')
@@ -62,7 +62,7 @@ const calculate = () => {
 	}
 	currentNumber = result
 	calculationOperator = ' '
-	finalNumber = currentNumber
+	resultNumber = currentNumber
 }
 
 const equalSign = document.querySelector('.equal-sign')
@@ -96,5 +96,19 @@ const decimal = document.querySelector('.decimal')
 
 decimal.addEventListener('click', (event) => {
 	inputDecimal(event.target.value)
+	updateScreen(currentNumber)
+})
+
+const percentageNumber = () => {
+	if (currentNumber === '0') {
+		return
+	} 
+	currentNumber = currentNumber / 100
+}
+
+const percentage = document.querySelector('.percentage')
+
+percentage.addEventListener('click', (event) => {
+	percentageNumber(event.target.value)
 	updateScreen(currentNumber)
 })
