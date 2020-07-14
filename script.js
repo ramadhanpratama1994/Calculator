@@ -1,9 +1,10 @@
 let prevNumber = ' '
 let calculationOperator = ' '
 let currentNumber = '0'
+let finalNumber = ' '
 
 const inputNumber = (number) => {
-	if (currentNumber === '0') {
+	if (currentNumber === '0' || finalNumber === currentNumber) {
 		currentNumber = number
 	} else {
 		currentNumber += number
@@ -61,6 +62,7 @@ const calculate = () => {
 	}
 	currentNumber = result
 	calculationOperator = ' '
+	finalNumber = currentNumber
 }
 
 const equalSign = document.querySelector('.equal-sign')
